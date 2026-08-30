@@ -1,17 +1,23 @@
 {
-  "name": "KoishiAndDragons",
+  "name": "leaf-td-2",
   "tree": {
     "$className": "DataModel",
 
     "ReplicatedStorage": {
       "Shared": {
         "$path": "src/shared"
+      },
+      "Packages": {
+        "$path": "Packages"
       }
     },
 
     "ServerScriptService": {
       "Server": {
         "$path": "src/server"
+      },
+      "ServerPackages": {
+        "$path": "ServerPackages"
       }
     },
 
