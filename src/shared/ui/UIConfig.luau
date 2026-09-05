@@ -1,10 +1,11 @@
--- UI Permission Configuration based on Roblox Group
+-- UI Permission Configuration based on Whitelist
 -- GM = full access | Members = limited access
+-- Note: Group-based access removed; uses WhitelistConfig instead
 
 local UIConfig = {}
 
-UIConfig.GroupId = 0 -- Replace with your Roblox Group ID
-UIConfig.GMRoleId = 0 -- Replace with GM Role Rank ID (e.g., 255)
+UIConfig.GroupId = 0 -- Deprecated: group access removed; use WhitelistConfig
+UIConfig.GMRoleId = 0 -- Deprecated: group access removed; use WhitelistConfig
 
 UIConfig.UIAccess = {
     GMOnly = {
