@@ -17,7 +17,7 @@ end
 -- Define a função SetVisibility para controlar a visibilidade da interface com base no status de Game Master
 function InterfaceManager:SetVisibility(visible: boolean)
     local player = Players.LocalPlayer
-    local masterButtons =  player:WaitForChild("PlayerGui"):WaitForChild("ScreenGui"):WaitForChild("GeneralUI"):WaitForChild("ButtonsContainer"):WaitForChild("MasterSide")
+    local masterButtons =  player:WaitForChild("PlayerGui"):WaitForChild("GeneralUI"):WaitForChild("ButtonsContainer"):WaitForChild("MasterSide")
 
     for _, child in pairs(masterButtons:GetChildren()) do
         if child:IsA("GuiObject") then
