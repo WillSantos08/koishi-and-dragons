@@ -3,9 +3,8 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Remotes = ReplicatedStorage:FindFirstChild("Remotes")
 
-local remoteFunction = Instance.new("RemoteFunction")
+local remoteFunction = Instance.new("RemoteFunction", Remotes)
 remoteFunction.Name = "isGameMaster"
-remoteFunction.Parent = Remotes
 
 local WhitelistManager = {}
 
