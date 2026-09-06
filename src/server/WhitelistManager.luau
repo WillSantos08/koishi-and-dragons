@@ -1,13 +1,7 @@
 local Whitelist = require(script.Parent.Whitelist)
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
 local Remotes = ReplicatedStorage:FindFirstChild("Remotes")
-if not Remotes then
-	Remotes = Instance.new("Folder")
-	Remotes.Name = "Remotes"
-	Remotes.Parent = ReplicatedStorage
-end
 
 local remoteFunction = Instance.new("RemoteFunction")
 remoteFunction.Name = "isGameMaster"
