@@ -32,7 +32,7 @@ end
 -- Verifica se o jogador é um Game Master ao entrar no jogo
 function InterfaceManager:ShowInterface()
     local ok, result = pcall(function()
-        local remote = Remotes:WaitForChild("isGameMaster")
+        local remote = Remotes:FindFirstChild("isGameMaster")
         return remote:InvokeServer()
     end)
     isGameMaster = ok and result or false
