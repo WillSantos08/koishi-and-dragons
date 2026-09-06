@@ -3,7 +3,7 @@ local Players = game:GetService("Players")
 local remoteFunction = Instance.new("RemoteFunction")
 
 remoteFunction.Name = "isGameMaster"
-remoteFunction.Parent = game.ReplicatedStorage.Shared:WaitForChild("Remotes")
+remoteFunction.Parent = game.ReplicatedStorage.Shared.Remotes
 
 local WhitelistManager = {}
 
