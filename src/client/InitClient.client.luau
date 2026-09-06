@@ -1,2 +1,7 @@
 local InterfaceManager = require(script.Parent.InterfaceManager)
-InterfaceManager:ShowInterface()
+local ok, err = pcall(function()
+    InterfaceManager:ShowInterface()
+end)
+if not ok then
+    warn("InitClient error: " .. tostring(err))
+end

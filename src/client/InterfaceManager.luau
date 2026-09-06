@@ -7,16 +7,17 @@ local isGameMaster = false
 local masterButtons: Instance? = nil
 
 -- Helper genérico para evitar cadeias de WaitForChild
-local function waitForPath(root: Instance, path: {string}): Instance
+local function waitForPath(root: Instance, path: {string}): Instance?
     local current = root
     for _, name in ipairs(path) do
-        current = current:WaitForChild(name)
+        current = current:WaitForChild(name, 5)
+        if not current then return nil end
     end
     return current
 end
 
 -- Busca (uma única vez) e cacheia o container dos botões de master
-local function getMasterButtons(): Instance
+local function getMasterButtons(): Instance?
     if not masterButtons then
         local player = Players.LocalPlayer
         masterButtons = waitForPath(player, {
@@ -32,7 +33,7 @@ end
 -- Verifica se o jogador é um Game Master ao entrar no jogo
 function InterfaceManager:ShowInterface()
     local ok, result = pcall(function()
-        local remote = Remotes:FindFirstChild("isGameMaster")
+        local remote = Remotes:WaitForChild("isGameMaster", 5)
         return remote:InvokeServer()
     end)
     isGameMaster = ok and result or false
@@ -42,6 +43,7 @@ end
 -- Controla a visibilidade da interface com base no status de Game Master
 function InterfaceManager:SetVisibility(visible: boolean)
     local buttons = getMasterButtons()
+    if not buttons then return end
     for _, child in buttons:GetChildren() do
         if child:IsA("GuiObject") then
             child.Visible = visible
