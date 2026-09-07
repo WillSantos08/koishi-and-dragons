@@ -3,10 +3,6 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Remotes = ReplicatedStorage:WaitForChild("Remotes")
 
-local remoteFunction = Instance.new("RemoteFunction")
-remoteFunction.Name = "isGameMaster"
-remoteFunction.Parent = Remotes
-
 local WhitelistManager = {}
 
 -- Verifica se o jogador está na whitelist e, caso não esteja, o expulsa do jogo
@@ -23,9 +19,21 @@ function WhitelistManager:isGameMaster(player: Player): boolean
     return entry and entry.role == "GameMaster"
 end
 
--- Configura o RemoteFunction para verificar se o jogador é um Game Master
+local remoteFunction = Instance.new("RemoteFunction")
+remoteFunction.Name = "isGameMaster"
+
+-- Configura o RemoteFunction ANTES de definir Parent para evitar race condition
 remoteFunction.OnServerInvoke = function(player)
     return WhitelistManager:isGameMaster(player)
+end
+
+remoteFunction.Parent = Remotes
+
+-- Verifica jogadores já existentes (para Studio test)
+for _, player in Players:GetPlayers() do
+    task.spawn(function()
+        WhitelistManager:CheckPlayer(player)
+    end)
 end
 
 -- Conecta o evento PlayerAdded para verificar se o jogador está na whitelist ao entrar no jogo
