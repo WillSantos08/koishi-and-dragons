@@ -6,7 +6,7 @@ local InterfaceManager = {}
 local isGameMaster = false
 local masterButtons: Instance? = nil
 
--- Helper gen�rico para evitar cadeias de WaitForChild
+-- Helper genérico para evitar cadeias de WaitForChild
 local function waitForPath(root: Instance, path: {string}): Instance?
     local current = root
     for _, name in ipairs(path) do
@@ -16,7 +16,7 @@ local function waitForPath(root: Instance, path: {string}): Instance?
     return current
 end
 
--- Busca (uma única vez) e cacheia o container dos botões de master
+-- Busca e cacheia o container dos botões de master
 local function getMasterButtons(): Instance?
     if not masterButtons then
         local player = Players.LocalPlayer
